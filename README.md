@@ -3,6 +3,21 @@
     <h1 align="center">Threat Hunt Report: Unauthorized TOR Usage</h1>
 </p>
 
+---
+
+# Table of Contents
+
+- [Platforms and Languages Leveraged](#platforms-and-languages-leveraged)
+- [Scenario](#scenario)
+- [Steps the "Bad Actor" took](#steps-the-bad-actor-took-create-logs-and-iocs-indicators-of-compromise)
+- [Tables Used to Detect IoCs](#tables-used-to-detect-iocs)
+- [Steps Taken](#steps-taken)
+- [Chronological Event Timeline](#chronological-event-timeline)
+- [Summary](#summary)
+- [Response Taken](#response-taken)
+
+---
+
 ## Platforms and Languages Leveraged
 - Windows 11 Virtual Machines (Microsoft Azure)
 - EDR Platform: Microsoft Defender for Endpoint
@@ -15,7 +30,7 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ---
 
-## Steps the "Bad Actor" took Create Logs and IoCs:
+## Steps the "Bad Actor" took Create Logs and IoCs (Indicators of Compromise):
 1. Download the TOR browser installer: https://www.torproject.org/download/
 2. Install it silently: ```tor-browser-windows-x86_64-portable-15.0.7.exe /S```
 3. Opens the TOR browser from the folder on the desktop
