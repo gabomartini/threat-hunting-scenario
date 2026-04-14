@@ -3,8 +3,6 @@
     <h1 align="center">Threat Hunt Report: Unauthorized TOR Usage</h1>
 </p>
 
-- [Scenario Creation](https://github.com/joshmadakor0/threat-hunting-scenario-tor/blob/main/threat-hunting-scenario-tor-event-creation.md)
-
 ## Platforms and Languages Leveraged
 - Windows 11 Virtual Machines (Microsoft Azure)
 - EDR Platform: Microsoft Defender for Endpoint
@@ -15,11 +13,41 @@
 
 Management suspects that some employees may be using TOR browsers to bypass network security controls because recent network logs show unusual encrypted traffic patterns and connections to known TOR entry nodes. Additionally, there have been anonymous reports of employees discussing ways to access restricted sites during work hours. The goal is to detect any TOR usage and analyze related security incidents to mitigate potential risks. If any use of TOR is found, notify management.
 
-### High-Level TOR-Related IoC Discovery Plan
+---
 
-- **Check `DeviceFileEvents`** for any `tor(.exe)` or `firefox(.exe)` file events.
-- **Check `DeviceProcessEvents`** for any signs of installation or usage.
-- **Check `DeviceNetworkEvents`** for any signs of outgoing connections over known TOR ports.
+## Steps the "Bad Actor" took Create Logs and IoCs:
+1. Download the TOR browser installer: https://www.torproject.org/download/
+2. Install it silently: ```tor-browser-windows-x86_64-portable-15.0.7.exe /S```
+3. Opens the TOR browser from the folder on the desktop
+4. Connect to TOR and browse a few sites. For example:
+   - **WARNING: The links to onion sites change a lot and these have changed. However if you connect to Tor and browse around normal sites a bit, the necessary logs should still be created:**
+   - Current Dread Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion```
+   - Dark Markets Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/d/DarkNetMarkets```
+   - Current Elysium Market: ```elysiumutkwscnmdohj23gkcyp3ebrf4iio3sngc5tvcgyfp4nqqmwad.top/login```
+
+6. Create a folder on desktop called ```tor-shopping-list.txt``` and put a few fake (illicit) items in there
+7. Delete the file.
+
+---
+
+## Tables Used to Detect IoCs:
+| **Parameter**       | **Description**                                                              |
+|---------------------|------------------------------------------------------------------------------|
+| **Name**| DeviceFileEvents|
+| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicefileevents-table|
+| **Purpose**| Used for detecting TOR download and installation, as well as the shopping list creation and deletion. |
+
+| **Parameter**       | **Description**                                                              |
+|---------------------|------------------------------------------------------------------------------|
+| **Name**| DeviceProcessEvents|
+| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table|
+| **Purpose**| Used to detect the silent installation of TOR as well as the TOR browser and service launching.|
+
+| **Parameter**       | **Description**                                                              |
+|---------------------|------------------------------------------------------------------------------|
+| **Name**| DeviceNetworkEvents|
+| **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table|
+| **Purpose**| Used to detect TOR network activity, specifically tor.exe and firefox.exe making connections over ports to be used by TOR (9001, 9030, 9040, 9050, 9051, 9150).|
 
 ---
 
