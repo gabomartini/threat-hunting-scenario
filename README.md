@@ -9,7 +9,7 @@
 
 - [Platforms and Languages Leveraged](#platforms-and-languages-leveraged)
 - [Scenario](#scenario)
-- [Steps the "Bad Actor" took](#steps-the-bad-actor-took-create-logs-and-iocs-indicators-of-compromise)
+- [Controlled Lab Steps to Generate Logs and IoCs](#controlled-lab-steps-to-generate-logs-and-iocs-indicators-of-compromise)
 - [Tables Used to Detect IoCs](#tables-used-to-detect-iocs)
 - [Steps Taken](#steps-taken)
 - [Chronological Event Timeline](#chronological-event-timeline)
@@ -30,17 +30,12 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ---
 
-## Steps the "Bad Actor" took Create Logs and IoCs (Indicators of Compromise):
-1. Download the TOR browser installer: https://www.torproject.org/download/
-2. Install it silently: ```tor-browser-windows-x86_64-portable-15.0.7.exe /S```
-3. Opens the TOR browser from the folder on the desktop
-4. Connect to TOR and browse a few sites. For example:
-   - **WARNING: The links to onion sites change a lot and these have changed. However if you connect to Tor and browse around normal sites a bit, the necessary logs should still be created:**
-   - Current Dread Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion```
-   - Dark Markets Forum: ```dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/d/DarkNetMarkets```
-   - Current Elysium Market: ```elysiumutkwscnmdohj23gkcyp3ebrf4iio3sngc5tvcgyfp4nqqmwad.top/login```
-
-6. Create a folder on desktop called ```tor-shopping-list.txt``` and put a few fake (illicit) items in there
+## Controlled Lab Steps to Generate Logs and IoCs (Indicators of Compromise):
+1. Download the TOR browser installer.
+2. Install it silently.
+3. Open the TOR browser from the folder on the desktop.
+4. Connect to TOR and browse a few sites.
+6. Create a text file on desktop.
 7. Delete the file.
 
 ---
